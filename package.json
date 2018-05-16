@@ -1,0 +1,25 @@
+{
+  "name": "shoppingcart",
+  "version": "1.0.0",
+  "description": "Shopping Cart Application",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/priyanka1719/ShoppingCartApp.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/priyanka1719/ShoppingCartApp/issues"
+  },
+  "homepage": "https://github.com/priyanka1719/ShoppingCartApp#readme",
+  "dependencies" : {
+    "express": "~4.15.3",
+    "mongoose": "~4.11.0",
+    "cors": "~2.8.3",
+    "body-parser": "~1.17.2"
+  }
+}
