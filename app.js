@@ -7,7 +7,7 @@ const mongoose = require('mongoose');
 
 //Custom Module Dependencies
 const config = require('./config/database');
-const shoppingcart = require('./controllers/shoppingcart');
+const shop = require('./controllers/inventoryController');
 
 //App variable
 const app = express();
@@ -34,10 +34,12 @@ app.get('/', (req,res) => {
     res.send("Invalid page");
 });
 
-//Routing all HTTP Requests for 'shoppingcart' to controller - shoppingcart.js
-app.use('/shoppingcart',shoppingcart);
+//Routing all HTTP Requests for '/shop/inventory' to controller - inventoryController.js
+app.use('/shop/inventory',shop);
 
 //Listen to port 3000
 app.listen(port, () => {
     console.log(`Starting the server at port ${port}`);
 });
+
+//https://www.sitepoint.com/mean-stack-angular-2-angular-cli/
