@@ -16,10 +16,13 @@
     "url": "https://github.com/priyanka1719/ShoppingCartApp/issues"
   },
   "homepage": "https://github.com/priyanka1719/ShoppingCartApp#readme",
-  "dependencies" : {
+  "dependencies": {
     "express": "~4.15.3",
     "mongoose": "~4.11.0",
     "cors": "~2.8.3",
     "body-parser": "~1.17.2"
+  },
+  "devDependencies": {
+    "@angular/cli": "^6.0.3"
   }
 }
