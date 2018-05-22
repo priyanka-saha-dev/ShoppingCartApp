@@ -2,7 +2,7 @@
 const mongoose = require('mongoose');
 
 //Define InventorySchema with title, description and category
-const InventoryModelSchema = mongoose.Schema({
+const InventorySchema = new mongoose.Schema({
     title: {
         type: String,
         required: true
@@ -23,28 +23,25 @@ const InventoryModelSchema = mongoose.Schema({
     }
 });
 
-const InventorySchema = module.exports = mongoose.model('InventorySchema', InventoryModelSchema);
+const inventory = module.exports = mongoose.model('Inventory', InventorySchema);
 
 //InventorySchema.find() - Fetches all
 module.exports.getAllInventoryItems = (callback) => {
-    InventorySchema.find(callback);
+    inventory.find(callback);
 }
 //InventorySchema.find() - Fetches item for 'id'
 module.exports.getInventoryItemByID = (id, callback) => {
-    let query = {_id: id};
-    InventorySchema.find(query, callback);
+    inventory.findById(id, callback);
 }
-//newItem.save - Insert an item
+//inventory.create - Insert an item
 module.exports.addInventoryItem = (newItem, callback) => {
-    newItem.save(callback);
+    inventory.create(newItem, callback);
 }
 //InventorySchema.remove - Deletes an item
 module.exports.deleteInventoryItemById = (id, callback) => {
-    let query = {_id: id};
-    InventorySchema.remove(query, callback);
+    inventory.findByIdAndRemove(id, callback);
 }
 //InventorySchema.findOneAndUpdate - Updates the 'updateItem'
 module.exports.updateInventoryItem = (id, updatedItem, callback) => {
-    let query = {_id: id};
-    InventorySchema.findOneAndUpdate(query, {$set : {updatedItem}}, { new: true }, callback);
+    inventory.findByIdAndUpdate(id, updatedItem, callback);
 }

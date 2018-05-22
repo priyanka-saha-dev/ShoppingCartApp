@@ -8,17 +8,11 @@ router.get('/', (req, res) => {
     //res.send("GET");
     inventory.getAllInventoryItems((err, items) => {
         if (err) {
-            res.json({
-                success: false,
-                message: `Failed to load all lists. Error: ${err}`
-            });
-        } else {
-            res.write(JSON.stringify({
-                success: true,
-                items: items
-            }, null, 2));
-            res.end();
-        }
+            return next(err);
+        } 
+        
+        res.json(items);
+        
     });
 });
 
@@ -28,74 +22,35 @@ router.get('/:id', (req, res, next) => {
     let id = req.params.id;
     inventory.getInventoryItemByID(id, (err, item) => {
         if (err) {
-            res.json({
-                success: false,
-                message: `Failed to load list for ${id}. Error: ${err}`
-            });
-        } else {
-            res.write(JSON.stringify({
-                success: true,
-                items: item
-            }, null, 2));
-            res.end();
-        }
+            return next(err);
+        } 
+        
+        res.json(item);
     });
 });
 
 //POST HTTP method to /shop/inventory
 router.post('/', (req, res, next) => {
-    //res.send("POST");
-    let newItem = new inventory({
-        title: req.body.title,
-        description: req.body.description,
-        category: req.body.category,
-        expiry: req.body.expiry,
-        quantity: req.body.quantity
-
-    });
-    
-    inventory.addInventoryItem(newItem, (err, item) => {
+       
+    inventory.addInventoryItem(req.body, (err, item) => {
         if (err) {
-            res.json({
-                success: false,
-                message: `Failed to Create item. Error: ${err}`
-            });
-        } else {
-            res.json({
-                success: true,
-                message: `Item ${item.title} created successfully`
-            });
-        }
+            return next(err);
+        } 
+        
+        res.json(item);
     });
 });
 
 //PUT HTTP method to /shop/inventory
 router.put('/:id', (req, res, next) => {
-    //res.send("PUT");
-    let updatedItem = {
-        title: req.body.title,
-        description: req.body.description,
-        category: req.body.category,
-        expiry: req.body.expiry,
-        quantity: req.body.quantity
-    };
-
-    
     let id = req.params.id;
-    console.log("PUT request id: " + id);
-
-    inventory.updateInventoryItem(id, updatedItem, (err, item) => {
+    
+    inventory.updateInventoryItem(id, req.body, (err, item) => {
         if (err) {
-            res.json({
-                success: false,
-                message: `Failed to Create item. Error: ${err}`
-            });
-        } else {
-            res.json({
-                success: true,
-                message: `Item updated successfully`
-            });
-        }
+            return next(err);
+        } 
+        
+        res.json(item);
     });
 });
 
@@ -106,21 +61,10 @@ router.delete('/:id', (req, res, next) => {
 
     inventory.deleteInventoryItemById(id, (err, item) => {
         if (err) {
-            res.json({
-                success: false,
-                message: `Failed to delete the item. Error: ${err}`
-            });
-        }
-        else if (item) {
-            res.json({
-                success: true,
-                message: `Item ${item.title} deleted successfully`
-            });
-        }
-        else
-            res.json({
-                success: false
-            });
+            return next(err);
+        } 
+        
+        res.json(item);
     })
 
 })
