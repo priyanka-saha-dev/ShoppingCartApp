@@ -1,31 +1,36 @@
 <div class="container">
-  <table class="table">
-    <thead>
-      <tr>
-        <td>title</td>
-        <td>description</td>
-        <td>category</td>
-        <td>quantity</td>
-        <td>expiry</td>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>Item-1</td>
-        <td><input type="text" class="form-control" id="description"></td>
-        <td><input type="text" class="form-control" id="category"></td>
-        <td><input type="text" class="form-control" id="quantity"></td>
-        <td><input type="text" class="form-control" id="expiry"></td>
-      </tr>
-      <!-- <tr *ngFor = "let item in inventoryItem">
-
-          <td>item.title</td>
-          <td>item.description</td>
-          <td>item.category</td>
-          <td>item.quantity</td>
-          <td>item.expiry</td>
-
-      </tr> -->
-    </tbody>
-  </table>
-</div>
+    <h3>Add Inventory Item:</h3>
+    <form (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="title">Title:</label>
+        <input class="form-control" type="text" [(ngModel)]="newItem.title" name="title" required>
+      </div>
+  
+      <div class="form-group">
+        <label for="description">Description:</label>
+        <textarea class="form-control" [(ngModel)]="newItem.description" name="description"></textarea>
+      </div>
+  
+      <div class="form-group">
+        <label for="category">Select Category:</label>
+        <select class="form-control" [(ngModel)]="newItem.category" name="category">
+          <option value="Groceries">Groceries</option>
+          <option value="Electronics">Electronics</option>
+          <option value="Apparels">Apparels</option>
+        </select>
+      </div>
+  
+      <div class="form-group">
+        <label for="quantity">Quantity:</label>
+        <input class="form-control" type="text" [(ngModel)]="newItem.quantity" name="quantity" required>
+      </div>
+  
+      <div class="form-group">
+        <label for="expiry">Expiry:</label>
+        <input class="form-control" type="text" [(ngModel)]="newItem.expiry" name="expiry" required>
+      </div>
+  
+      <button type="submit" class="btn btn-primary">Submit</button>
+  
+    </form>
+  </div>

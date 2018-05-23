@@ -7,33 +7,24 @@
         <td>Category</td>
         <td>Quantity</td>
         <td>Expiry</td>
+        <td>Actions</td>
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <td>Item-1</td>
-        <td>Item 1 desc</td>
-        <td>Groceries</td>
-        <td>5</td>
-        <td>01-01-2018</td>
-      </tr>
-      <tr>
-        <td>Item-2</td>
-        <td>Item 2 desc</td>
-        <td>Groceries</td>
-        <td>99</td>
-        <td>30-05-2018</td>
-      </tr>
-      <!-- <tr *ngFor = "let item in inventoryItem">
-
-          <td>item.title</td>
-          <td>item.description</td>
-          <td>item.category</td>
-          <td>item.quantity</td>
-          <td>item.expiry</td>
-
-      </tr> -->
+      
+      <tr *ngFor = "let item of inventoryItem">
+          <td>{{item.title}}</td>
+          <td>{{item.description}}</td>
+          <td>{{item.category}}</td>
+          <td>{{item.quantity}}</td>
+          <td>{{item.expiry}}</td>
+          <td>
+            <button class="btn btn-success">Edit</button> &nbsp;
+            <button class="btn btn-danger">Delete</button>
+          </td>
+      </tr> 
+      
     </tbody>
   </table>
 </div>
-<!--<app-add-inventory-item></app-add-inventory-item>-->
+<app-add-inventory-item></app-add-inventory-item>
