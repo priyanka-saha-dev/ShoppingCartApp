@@ -20,11 +20,11 @@
           <td>{{item.expiry}}</td>
           <td>
             <button class="btn btn-success">Edit</button> &nbsp;
-            <button class="btn btn-danger">Delete</button>
+            <button class="btn btn-danger" type="button" (click)="deleteInventoryItem(item); $event.stopPropagation();">Delete</button>
           </td>
       </tr> 
       
     </tbody>
   </table>
 </div>
-<app-add-inventory-item></app-add-inventory-item>
+<app-add-inventory-item (addInventoryItem)='onAddInventoryItem($event)'></app-add-inventory-item>

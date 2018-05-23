@@ -30,4 +30,19 @@ export class ViewInventoryItemComponent implements OnInit {
 
   }
 
+  public onAddInventoryItem(newItem) {
+    this.inventoryItem = this.inventoryItem.concat(newItem);
+  }
+
+  public deleteInventoryItem(item) {
+    console.log('item id : ' + item._id);
+    this.inventorySvc.deleteInventoryItem(item._id).subscribe(
+      response => {
+        console.log('item deleted');
+        this.inventoryItem = this.inventoryItem.filter(items => items !== item);
+      }
+    );
+  }
 }
+
+

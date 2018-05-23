@@ -14,7 +14,7 @@ export class InventoryItemService {
     console.log('InventoryItemService Provider');
   }
 
-  private serverApiURI = 'http://localhost:3000/shop/inventory/';
+  private serverApiURI = 'http://localhost:3000/shop/inventory';
 
   public getAllInventoryItem(itemID) : Observable<InventoryItem[]>{
 
@@ -46,6 +46,18 @@ export class InventoryItemService {
     headers.append('Content-Type', 'application/json');
     
     return this.http.post(this.serverApiURI, newItemRequest , {headers: headers})
+               .pipe(map( res => res.json()));
+  }
+
+  public deleteInventoryItem(itemID : string) {
+    
+    let itemURI = `${this.serverApiURI}/${itemID}`;
+    console.log(itemURI);
+
+    let headers = new Headers;
+    headers.append('Content-Type', 'application/json');
+    
+    return this.http.delete(itemURI, {headers: headers})
                .pipe(map( res => res.json()));
   }
 }
