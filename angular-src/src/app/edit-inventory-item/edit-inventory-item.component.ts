@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router'
 
 import { InventoryItem } from '../models/InventoryItem';
@@ -11,7 +11,8 @@ import { InventoryItemService } from '../services/inventory-item.service';
 })
 export class EditInventoryItemComponent implements OnInit {
 
-  private inventoryItem: InventoryItem;
+  //private inventoryItem: InventoryItem;
+  @Input() inventoryItem: InventoryItem;
 
   constructor(
     private route : ActivatedRoute,
@@ -21,14 +22,17 @@ export class EditInventoryItemComponent implements OnInit {
   ngOnInit() {
     this.loadInventoryItemByID();
   }
+  
 
   public loadInventoryItemByID(){
-    const itemID = this.route.snapshot.paramMap.get('id');
+    console.log('loading item : ' + this.inventoryItem);
 
-    this.inventorySvc.getInventoryItemByID(itemID).subscribe(
-      response => {
-        this.inventoryItem = response;
-        //console.log(response);
-      });
+    // const itemID = this.route.snapshot.paramMap.get('id');
+
+    // this.inventorySvc.getInventoryItemByID(itemID).subscribe(
+    //   response => {
+    //     this.inventoryItem = response;
+    //     //console.log(response);
+    //   });
     }
 }

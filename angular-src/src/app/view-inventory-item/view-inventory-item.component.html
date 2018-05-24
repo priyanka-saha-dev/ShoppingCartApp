@@ -32,7 +32,7 @@
           <td>{{item.quantity}}</td>
           <td>{{item.expiry | date: 'dd/MM/yyyy'}}</td>
           <td>
-            <button class="btn btn-success btn-sm" (click)="editInventoryItem()" routerLink="/inventory/{{item._id}}">Edit</button> &nbsp;
+            <button class="btn btn-success btn-sm" (click)="editInventoryItem(item)">Edit</button> &nbsp;
             <button class="btn btn-danger btn-sm" type="button" (click)="deleteInventoryItem(item); $event.stopPropagation();">Delete</button>
           </td>
         </tr>
@@ -47,6 +47,6 @@
     <app-add-inventory-item (addInventoryItem)='onAddInventoryItem($event)'></app-add-inventory-item>
   </div>
   <div class="col" *ngIf="activeEditInventoryItem">
-      <!-- <app-edit-inventory-item></app-edit-inventory-item> -->
+      <app-edit-inventory-item [inventoryItem]="theInventoryItem"></app-edit-inventory-item>
   </div>
 </div>

@@ -12,7 +12,10 @@ import { InventoryItemService } from '../services/inventory-item.service';
 export class ViewInventoryItemComponent implements OnInit {
 
   constructor(private inventorySvc : InventoryItemService) { }
+  
   private inventoryItem: InventoryItem[] = [];
+  private theInventoryItem: InventoryItem;
+
   private activeAddInventoryItem : boolean = false;
   private activeEditInventoryItem : boolean = false;
 
@@ -20,6 +23,19 @@ export class ViewInventoryItemComponent implements OnInit {
     this.loadAllInventoryItems();
     this.activeAddInventoryItem = false;
     this.activeEditInventoryItem = false;
+  }
+
+  public reinitItem(){
+    this.theInventoryItem = {
+      title : '',
+      description: '',
+      category : '',
+      quantity : 0,
+      expiry : new Date(),
+      choice : false
+    }
+
+    //this.active = true;
   }
 
   public loadAllInventoryItems() {
@@ -52,8 +68,10 @@ export class ViewInventoryItemComponent implements OnInit {
     this.activeEditInventoryItem = false;
   }
 
-  public editInventoryItem(){
-    console.log('edit clicked');
+  public editInventoryItem(item){
+    console.log('edit clicked for : ' + item);
+    this.theInventoryItem = item;
+
     this.activeEditInventoryItem = true;
     this.activeAddInventoryItem = false;
   }
