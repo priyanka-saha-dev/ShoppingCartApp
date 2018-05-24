@@ -13,25 +13,27 @@ export class ViewInventoryItemComponent implements OnInit {
 
   constructor(private inventorySvc : InventoryItemService) { }
   private inventoryItem: InventoryItem[] = [];
+  private activeAddInventoryItem : boolean = false;
+  private activeEditInventoryItem : boolean = false;
 
   ngOnInit() {
     this.loadAllInventoryItems();
+    this.activeAddInventoryItem = false;
+    this.activeEditInventoryItem = false;
   }
 
   public loadAllInventoryItems() {
-    this.inventorySvc.getAllInventoryItem('id').subscribe(
+    this.inventorySvc.getAllInventoryItem().subscribe(
       response => {
         this.inventoryItem = response;
         //console.log(response);
       });
   }
 
-  public loadInventoryItemByID(){
-
-  }
-
   public onAddInventoryItem(newItem) {
     this.inventoryItem = this.inventoryItem.concat(newItem);
+    this.activeAddInventoryItem = false;
+    this.activeEditInventoryItem = false;
   }
 
   public deleteInventoryItem(item) {
@@ -42,6 +44,18 @@ export class ViewInventoryItemComponent implements OnInit {
         this.inventoryItem = this.inventoryItem.filter(items => items !== item);
       }
     );
+  }
+
+  public addInventoryItem(){
+    console.log('add clicked');
+    this.activeAddInventoryItem = true;
+    this.activeEditInventoryItem = false;
+  }
+
+  public editInventoryItem(){
+    console.log('edit clicked');
+    this.activeEditInventoryItem = true;
+    this.activeAddInventoryItem = false;
   }
 }
 

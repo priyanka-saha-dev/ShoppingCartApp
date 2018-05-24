@@ -11,6 +11,7 @@ import { InventoryItemService } from '../services/inventory-item.service';
 })
 export class AddInventoryItemComponent implements OnInit {
 
+  //private active : boolean = false;
   private newItem: InventoryItem;
   constructor(private inventorySvc : InventoryItemService) { }
   @Output() addInventoryItem: EventEmitter<InventoryItem> = new EventEmitter<InventoryItem>();
@@ -28,6 +29,8 @@ export class AddInventoryItemComponent implements OnInit {
       expiry : new Date(),
       choice : false
     }
+
+    //this.active = true;
   }
 
   public onSubmit(){
