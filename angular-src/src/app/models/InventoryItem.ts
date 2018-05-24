@@ -5,4 +5,5 @@ export interface InventoryItem {
     category: string;
     quantity: number;
     expiry: Date;
+    choice: boolean;
 }

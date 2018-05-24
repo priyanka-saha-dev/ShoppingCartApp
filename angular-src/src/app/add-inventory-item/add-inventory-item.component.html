@@ -1,17 +1,17 @@
-<div class="container">
+
     <h3>Add Inventory Item:</h3>
     <form (ngSubmit)="onSubmit()">
-      <div class="form-group">
+      <div class="form-group row">
         <label for="title">Title:</label>
         <input class="form-control" type="text" [(ngModel)]="newItem.title" name="title" required>
       </div>
   
-      <div class="form-group">
+      <div class="form-group row">
         <label for="description">Description:</label>
         <textarea class="form-control" [(ngModel)]="newItem.description" name="description"></textarea>
       </div>
   
-      <div class="form-group">
+      <div class="form-group row">
         <label for="category">Select Category:</label>
         <select class="form-control" [(ngModel)]="newItem.category" name="category">
           <option value="Groceries">Groceries</option>
@@ -20,17 +20,16 @@
         </select>
       </div>
   
-      <div class="form-group">
+      <div class="form-group row">
         <label for="quantity">Quantity:</label>
         <input class="form-control" type="text" [(ngModel)]="newItem.quantity" name="quantity" required>
       </div>
   
-      <div class="form-group">
+      <div class="form-group row">
         <label for="expiry">Expiry:</label>
         <input class="form-control" type="text" [(ngModel)]="newItem.expiry" name="expiry" required>
       </div>
   
-      <button type="submit" class="btn btn-primary">Submit</button>
+      <button type="submit" class="btn btn-primary btn-block">Submit</button>
   
     </form>
-  </div>

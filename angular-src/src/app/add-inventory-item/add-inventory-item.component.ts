@@ -25,7 +25,8 @@ export class AddInventoryItemComponent implements OnInit {
       description: '',
       category : '',
       quantity : 0,
-      expiry : new Date()
+      expiry : new Date(),
+      choice : false
     }
   }
 
