@@ -68,6 +68,14 @@ export class ViewInventoryItemComponent implements OnInit {
     this.activeEditInventoryItem = false;
   }
 
+  public updateInventoryItem(action, item){
+    if(action === 'add'){
+      this.addInventoryItem();
+    } else if(action === 'edit' && item){
+      this.editInventoryItem(item);
+    }
+  }
+
   public editInventoryItem(item){
     console.log('edit clicked for : ' + item);
     this.theInventoryItem = item;

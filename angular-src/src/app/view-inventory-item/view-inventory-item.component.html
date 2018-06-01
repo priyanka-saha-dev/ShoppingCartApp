@@ -1,7 +1,7 @@
 <div class="row">
   <div class="col">
     <button class="btn btn-default btn-sm" routerLink="/inventory">View All Items</button> &nbsp;
-    <button class="btn btn-info btn-sm" (click)="addInventoryItem()" routerLink="/inventory/add">Add Item</button> &nbsp;
+    <button class="btn btn-info btn-sm" (click)="updateInventoryItem('add')" routerLink="/inventory/add">Add Item</button> &nbsp;
     <!-- <button class="btn btn-danger btn-sm" routerLink="/detail/purge">Purge Inventory</button> &nbsp; -->
     <button class="btn btn-danger btn-sm">Purge Inventory</button> &nbsp;
     <hr/>
@@ -32,7 +32,7 @@
           <td>{{item.quantity}}</td>
           <td>{{item.expiry | date: 'dd/MM/yyyy'}}</td>
           <td>
-            <button class="btn btn-success btn-sm" (click)="editInventoryItem(item)">Edit</button> &nbsp;
+            <button class="btn btn-success btn-sm" (click)="updateInventoryItem('edit',item)">Edit</button> &nbsp;
             <button class="btn btn-danger btn-sm" type="button" (click)="deleteInventoryItem(item); $event.stopPropagation();">Delete</button>
           </td>
         </tr>
