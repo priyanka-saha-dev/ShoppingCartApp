@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 import { InventoryItem } from '../models/InventoryItem';
 import { InventoryItemService } from '../services/inventory-item.service';
@@ -16,8 +16,8 @@ export class ViewInventoryItemComponent implements OnInit {
   private inventoryItem: InventoryItem[] = [];
   private theInventoryItem: InventoryItem;
 
-  private activeAddInventoryItem : boolean = false;
-  private activeEditInventoryItem : boolean = false;
+  @Input() activeAddInventoryItem : boolean = false;
+  @Input() activeEditInventoryItem : boolean = false;
 
   ngOnInit() {
     this.loadAllInventoryItems();
@@ -34,7 +34,8 @@ export class ViewInventoryItemComponent implements OnInit {
       expiry : new Date(),
       choice : false
     }
-
+    this.activeAddInventoryItem = false;
+    this.activeEditInventoryItem = false;
     //this.active = true;
   }
 
@@ -52,6 +53,13 @@ export class ViewInventoryItemComponent implements OnInit {
     this.activeEditInventoryItem = false;
   }
 
+  //Yet to implement
+  public onEditInventoryItem(newItem) {
+    //this.inventoryItem = this.inventoryItem.concat(newItem);
+    this.activeAddInventoryItem = false;
+    this.activeEditInventoryItem = false;
+  }
+
   public deleteInventoryItem(item) {
     console.log('item id : ' + item._id);
     this.inventorySvc.deleteInventoryItem(item._id).subscribe(
@@ -64,8 +72,8 @@ export class ViewInventoryItemComponent implements OnInit {
 
   public addInventoryItem(){
     console.log('add clicked');
-    this.activeAddInventoryItem = true;
-    this.activeEditInventoryItem = false;
+    this.activeAddInventoryItem = !this.activeAddInventoryItem;
+    //this.activeEditInventoryItem = false;
   }
 
   public updateInventoryItem(action, item){
@@ -80,8 +88,8 @@ export class ViewInventoryItemComponent implements OnInit {
     console.log('edit clicked for : ' + item);
     this.theInventoryItem = item;
 
-    this.activeEditInventoryItem = true;
-    this.activeAddInventoryItem = false;
+    this.activeEditInventoryItem = !this.activeEditInventoryItem;
+    //this.activeAddInventoryItem = false;
   }
 }
 
