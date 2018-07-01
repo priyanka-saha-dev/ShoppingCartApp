@@ -21,13 +21,8 @@ export class InventoryItemService {
     let headers = new Headers;
     headers.append('Content-Type', 'application/json');
     
-    //if(itemID){
-
-    //} else {
-      
-      return this.http.get(this.serverApiURI)
+    return this.http.get(this.serverApiURI)
                  .pipe(map( res => res.json()));
-    //}
   }
 
   public getInventoryItemByID(itemID) : Observable<InventoryItem>{

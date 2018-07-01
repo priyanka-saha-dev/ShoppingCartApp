@@ -1,14 +1,15 @@
 <div class="row">
   <div class="col">
     <button class="btn btn-default btn-sm" routerLink="/inventory">View All Items</button> &nbsp;
-    <button class="btn btn-info btn-sm" (click)="updateInventoryItem('add')" routerLink="/inventory/add">Add Item</button> &nbsp;
-    <!-- <button class="btn btn-danger btn-sm" routerLink="/detail/purge">Purge Inventory</button> &nbsp; -->
+    <button class="btn btn-info btn-sm" (click)="updateInventoryItem('add')">Add Item</button> &nbsp;
+    <button class="btn btn-success btn-sm" routerLink="/">Add to Cart</button> &nbsp;
     <button class="btn btn-danger btn-sm">Purge Inventory</button> &nbsp;
     <hr/>
+    <app-add-to-cart></app-add-to-cart>
   </div>
 </div>
 
-<div class="row">
+<div class="row" *ngIf="inventoryItem && inventoryItem.length">
   <div class="col">
     <table class="table table-condensed table-bordered table-hover">
       <thead>
@@ -29,7 +30,14 @@
           <td>{{item.title}}</td>
           <td>{{item.description}}</td>
           <td>{{item.category}}</td>
-          <td>{{item.quantity}}</td>
+          <td>
+            <span *ngIf="!item.choice">
+              {{item.quantity}}
+            </span>
+            <span class="textbox-small" *ngIf="item.choice">
+                <input type="text" class="form-control" [(ngModel)]="item.selectedQuantity" name="quantity">
+            </span>
+          </td>
           <td>{{item.expiry | date: 'dd/MM/yyyy'}}</td>
           <td>
             <button class="btn btn-success btn-sm" (click)="updateInventoryItem('edit',item)">Edit</button> &nbsp;

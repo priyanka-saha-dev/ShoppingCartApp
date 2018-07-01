@@ -32,7 +32,8 @@ export class ViewInventoryItemComponent implements OnInit {
       category : '',
       quantity : 0,
       expiry : new Date(),
-      choice : false
+      choice : false,
+      selectedQuantity : 0
     }
     this.activeAddInventoryItem = false;
     this.activeEditInventoryItem = false;
@@ -42,9 +43,19 @@ export class ViewInventoryItemComponent implements OnInit {
   public loadAllInventoryItems() {
     this.inventorySvc.getAllInventoryItem().subscribe(
       response => {
-        this.inventoryItem = response;
-        //console.log(response);
+        if(response.length > 0){
+          this.inventoryItem = response;
+          this.updateInventoryQuantity(0);
+        }
+        console.log(response);
       });
+  }
+
+  private updateInventoryQuantity(selectedQuanity) {
+    this.inventoryItem.forEach(element => {
+      element.selectedQuantity = selectedQuanity;
+      element.quantity = element.quantity - selectedQuanity;
+    });
   }
 
   public onAddInventoryItem(newItem) {

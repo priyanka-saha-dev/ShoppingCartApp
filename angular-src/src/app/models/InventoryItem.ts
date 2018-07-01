@@ -6,4 +6,5 @@ export interface InventoryItem {
     quantity: number;
     expiry: Date;
     choice: boolean;
+    selectedQuantity: number;
 }

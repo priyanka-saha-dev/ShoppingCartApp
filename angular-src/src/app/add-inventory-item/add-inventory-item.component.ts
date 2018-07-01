@@ -27,7 +27,8 @@ export class AddInventoryItemComponent implements OnInit {
       category : '',
       quantity : 0,
       expiry : new Date(),
-      choice : false
+      choice : false,
+      selectedQuantity : 0
     }
 
     //this.active = true;

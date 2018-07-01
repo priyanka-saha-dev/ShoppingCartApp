@@ -11,6 +11,7 @@ import { ViewInventoryItemComponent } from './view-inventory-item/view-inventory
 import { InventoryItemService } from './services/inventory-item.service';
 import { AppRoutingModule } from './/app-routing.module';
 import { EditInventoryItemComponent } from './edit-inventory-item/edit-inventory-item.component';
+import { AddToCartComponent } from './add-to-cart/add-to-cart.component';
 
 
 @NgModule({
@@ -18,7 +19,8 @@ import { EditInventoryItemComponent } from './edit-inventory-item/edit-inventory
     AppComponent,
     AddInventoryItemComponent,
     ViewInventoryItemComponent,
-    EditInventoryItemComponent
+    EditInventoryItemComponent,
+    AddToCartComponent
   ],
   imports: [
     BrowserModule,
