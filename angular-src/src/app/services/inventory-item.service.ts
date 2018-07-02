@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http, Headers  } from '@angular/http';
+import { Http, Headers } from '@angular/http';
 import { Observable } from 'rxjs';
 import { InventoryItem } from '../models/InventoryItem';
 
@@ -10,66 +10,58 @@ import { map } from 'rxjs/operators';
 })
 export class InventoryItemService {
 
-  constructor(public http: Http) { 
+  constructor(public http: Http) {
     console.log('InventoryItemService Provider');
   }
 
   private serverApiURI = 'http://localhost:3000/shop/inventory';
 
-  public getAllInventoryItem() : Observable<InventoryItem[]>{
+  public getAllInventoryItem(): Observable<InventoryItem[]> {
 
-    let headers = new Headers;
-    headers.append('Content-Type', 'application/json');
-    
     return this.http.get(this.serverApiURI)
-                 .pipe(map( res => res.json()));
+      .pipe(map(res => res.json()));
   }
 
-  public getInventoryItemByID(itemID) : Observable<InventoryItem>{
-    
+  public getInventoryItemByID(itemID): Observable<InventoryItem> {
+
     let itemURI = `${this.serverApiURI}/${itemID}`;
     console.log(itemURI);
 
-        let headers = new Headers;
-        headers.append('Content-Type', 'application/json');
-        
-        //if(itemID){
-    
-        //} else {
-          
-          return this.http.get(this.serverApiURI)
-                     .pipe(map( res => res.json()));
-        //}
-      }
+    let headers = new Headers;
+    headers.append('Content-Type', 'application/json');
 
-  public addInventoryItem(newItem: InventoryItem) {
-    
-    let newItemRequest = JSON.stringify({ 
-      title: newItem.title, 
-      description: newItem.description, 
+    return this.http.get(this.serverApiURI)
+      .pipe(map(res => res.json()));
+  }
+
+  public addInventoryItem(newItem: InventoryItem): Observable<InventoryItem> {
+
+    let newItemRequest = JSON.stringify({
+      title: newItem.title,
+      description: newItem.description,
       category: newItem.category,
-      quantity : newItem.quantity,
-      expiry : new Date(newItem.expiry)
+      quantity: newItem.quantity,
+      expiry: new Date(newItem.expiry)
     });
 
     console.log(newItemRequest);
 
     let headers = new Headers;
     headers.append('Content-Type', 'application/json');
-    
-    return this.http.post(this.serverApiURI, newItemRequest , {headers: headers})
-               .pipe(map( res => res.json()));
+
+    return this.http.post(this.serverApiURI, newItemRequest, { headers: headers })
+      .pipe(map(res => res.json()));
   }
 
-  public deleteInventoryItem(itemID : string) {
-    
+  public deleteInventoryItem(itemID: string): Observable<InventoryItem> {
+
     let itemURI = `${this.serverApiURI}/${itemID}`;
     console.log(itemURI);
 
     let headers = new Headers;
     headers.append('Content-Type', 'application/json');
-    
-    return this.http.delete(itemURI, {headers: headers})
-               .pipe(map( res => res.json()));
+
+    return this.http.delete(itemURI, { headers: headers })
+      .pipe(map(res => res.json()));
   }
 }

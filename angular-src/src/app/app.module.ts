@@ -12,7 +12,7 @@ import { InventoryItemService } from './services/inventory-item.service';
 import { AppRoutingModule } from './/app-routing.module';
 import { EditInventoryItemComponent } from './edit-inventory-item/edit-inventory-item.component';
 import { AddToCartComponent } from './add-to-cart/add-to-cart.component';
-
+import { AddToCartService } from './services/add-to-cart.service';
 
 @NgModule({
   declarations: [
@@ -30,7 +30,8 @@ import { AddToCartComponent } from './add-to-cart/add-to-cart.component';
     AppRoutingModule
   ],
   providers: [
-    InventoryItemService
+    InventoryItemService,
+    AddToCartService
   ],
   bootstrap: [AppComponent]
 })
