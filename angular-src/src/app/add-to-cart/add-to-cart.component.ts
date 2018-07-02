@@ -10,9 +10,24 @@ import { InventoryItemService } from '../services/inventory-item.service';
 })
 export class AddToCartComponent implements OnInit {
 
-    @Input() inventoryItem: InventoryItem[];
+    @Input() listOfInventoryItem: InventoryItem[];
+    inventoryItems : InventoryItem[] = [];
+
+    constructor(
+        private inventorySvc : InventoryItemService
+      ) { }
     
-    ngOnInit() { 
-        console.log(this.inventoryItem);
+    ngOnInit() { }
+
+    public addToCartInventoryItem(){
+        this.listOfInventoryItem.forEach(item => {
+            if(item.choice && item.selectedQuantity <= item.quantity) {
+                this.inventoryItems.push(item);
+            }
+        });
+        
+        if(this.inventoryItems && this.inventoryItems.length > 0){
+            console.log(this.inventoryItems);
+        }
     }
 }

@@ -9,10 +9,8 @@ router.get('/', (req, res) => {
     inventory.getAllInventoryItems((err, items) => {
         if (err) {
             return next(err);
-        } 
-        
-        res.json(items);
-        
+        }         
+        res.json(items);        
     });
 });
 
@@ -23,8 +21,7 @@ router.get('/:id', (req, res, next) => {
     inventory.getInventoryItemByID(id, (err, item) => {
         if (err) {
             return next(err);
-        } 
-        
+        }         
         res.json(item);
     });
 });
@@ -35,8 +32,7 @@ router.post('/', (req, res, next) => {
     inventory.addInventoryItem(req.body, (err, item) => {
         if (err) {
             return next(err);
-        } 
-        
+        }         
         res.json(item);
     });
 });
@@ -48,8 +44,7 @@ router.put('/:id', (req, res, next) => {
     inventory.updateInventoryItem(id, req.body, (err, item) => {
         if (err) {
             return next(err);
-        } 
-        
+        }         
         res.json(item);
     });
 });
@@ -62,8 +57,7 @@ router.delete('/:id', (req, res, next) => {
     inventory.deleteInventoryItemById(id, (err, item) => {
         if (err) {
             return next(err);
-        } 
-        
+        }         
         res.json(item);
     })
 

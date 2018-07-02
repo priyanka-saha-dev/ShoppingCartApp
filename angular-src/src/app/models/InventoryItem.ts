@@ -7,4 +7,5 @@ export interface InventoryItem {
     expiry: Date;
     choice: boolean;
     selectedQuantity: number;
+    costPerQuantity: number;
 }

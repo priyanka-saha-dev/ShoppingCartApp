@@ -33,7 +33,8 @@ export class ViewInventoryItemComponent implements OnInit {
       quantity : 0,
       expiry : new Date(),
       choice : false,
-      selectedQuantity : 0
+      selectedQuantity : 0,
+      costPerQuantity : 0
     }
     this.activeAddInventoryItem = false;
     this.activeEditInventoryItem = false;
@@ -47,7 +48,7 @@ export class ViewInventoryItemComponent implements OnInit {
           this.inventoryItem = response;
           this.updateInventoryQuantity(0);
         }
-        console.log(response);
+        //console.log(response);
       });
   }
 

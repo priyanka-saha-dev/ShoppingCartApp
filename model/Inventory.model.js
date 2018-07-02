@@ -20,6 +20,10 @@ const InventorySchema = new mongoose.Schema({
     expiry: {
         type: Date,
         default: Date.now
+    }, 
+    costPerQuantity: {
+        type: Number,
+        required: true
     }
 });
 

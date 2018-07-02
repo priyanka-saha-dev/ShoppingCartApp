@@ -2,10 +2,10 @@
   <div class="col">
     <button class="btn btn-default btn-sm" routerLink="/inventory">View All Items</button> &nbsp;
     <button class="btn btn-info btn-sm" (click)="updateInventoryItem('add')">Add Item</button> &nbsp;
-    <button class="btn btn-success btn-sm" routerLink="/">Add to Cart</button> &nbsp;
-    <button class="btn btn-danger btn-sm">Purge Inventory</button> &nbsp;
+    <!-- <button class="btn btn-warning btn-sm" routerLink="/">Add to Cart</button> &nbsp; -->
+    <app-add-to-cart [listOfInventoryItem]="inventoryItem"></app-add-to-cart>   
     <hr/>
-    <app-add-to-cart></app-add-to-cart>
+     
   </div>
 </div>
 
@@ -19,6 +19,7 @@
           <td>Description</td>
           <td>Category</td>
           <td>Quantity</td>
+          <td>Cost per qty.</td>
           <td>Expiry</td>
           <td>Actions</td>
         </tr>
@@ -38,6 +39,7 @@
                 <input type="text" class="form-control" [(ngModel)]="item.selectedQuantity" name="quantity">
             </span>
           </td>
+          <td>{{item.costPerQuantity}}</td>
           <td>{{item.expiry | date: 'dd/MM/yyyy'}}</td>
           <td>
             <button class="btn btn-success btn-sm" (click)="updateInventoryItem('edit',item)">Edit</button> &nbsp;
