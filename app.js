@@ -8,6 +8,7 @@ const mongoose = require('mongoose');
 //Custom Module Dependencies
 const config = require('./config/database');
 const shop = require('./controllers/inventoryController');
+const cart = require('./controllers/cartController');
 
 //App variable
 const app = express();
@@ -36,6 +37,9 @@ app.get('/', (req,res) => {
 
 //Routing all HTTP Requests for '/shop/inventory' to controller - inventoryController.js
 app.use('/shop/inventory',shop);
+
+//Routing all HTTP Requests for '/shop/cart' to controller - cartController.js
+app.use('/shop/cart',cart);
 
 //Listen to port 3000
 app.listen(port, () => {
